@@ -18,18 +18,18 @@ public class RecursionMethods {
         if (degree < 0) {
             throw new IllegalArgumentException();
         }
-        return degree == 0 ? 1 : pow(num, pow(num, degree - 1));
+        return degree == 0 ? 1 : multiply(num, pow(num, degree - 1));
     }
 
-    private static long pow(int num, long degree) {
+    private static long multiply(int num, long degree) {
         long res;
 
         if (num == 0 || degree == 0) {
             res = 0;
         } else if (num > 0) {
-            res = degree + pow(num - 1, degree);
+            res = degree + multiply(num - 1, degree);
         } else {
-            res = -pow(-num, degree);
+            res = -multiply(-num, degree);
         }
 
         return res;
@@ -44,19 +44,7 @@ public class RecursionMethods {
     }
 
     public static int square(int x) {
-        int res;
-        if (x == 0) {
-            res = 0;
-        } else if (x > 0) {
-            res = x + square(x, x - 1);
-        } else {
-            res = square(-x);
-        }
-        return res;
-    }
-
-    private static int square(int x, int n) {
-        return n == 0 ? 0 : x + square(x, n - 1);
+        return (x == 0) ? 0 : (x < 0) ? square(-x) : square(x - 1) + x + x - 1;
     }
 
     public static boolean isSubstring(String string, String subString) {
